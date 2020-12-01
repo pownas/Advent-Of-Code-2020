@@ -1,35 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Day1
+AppDataInput inputFile = new AppDataInput();
+List<string> dataList = new List<string>();
+dataList = inputFile.ReadData();
+bool isNotFound = true;
+
+foreach (var item in dataList)
 {
-    class Program
-    {
-        static void Main(string[] args)
+    int item1 = int.Parse(item);
+    if (isNotFound) {
+        foreach (var line in dataList)
         {
-            AppDataInput inputFile = new AppDataInput();
-            List<string> dataList = new List<string>();
+            int item2 = int.Parse(line);
 
-            dataList = inputFile.ReadData();
-
-            foreach (var item in dataList)
+            int result = item1 + item2;
+            if (result == 2020)
             {
-                int item1 = int.Parse(item);
-                foreach (var line in dataList)
-                {
-                    int item2 = int.Parse(line);
+                Console.WriteLine("Rad 1: " + item);
+                Console.WriteLine("Rad 2: " + line);
 
-                    int result = item1 + item2;
-                    if (result == 2020)
-                    {
-                        Console.WriteLine("Rad 1: " + item);
-                        Console.WriteLine("Rad 2: " + line);
+                int multiply = item1 * item2;
 
-                        int multiply = item1 * item2;
-
-                        Console.WriteLine("Svaret multiplicerat: " + multiply);
-                    }
-                }
+                Console.WriteLine("Svaret multiplicerat: " + multiply);
+                isNotFound = false;
             }
         }
     }
