@@ -7,7 +7,7 @@ I will try solve this years challanges with Microsofts new .NET5 (released novem
 
 | Day | Part 1 | Part 2 |
 | --- | --- | --- |
-|  1  | &#x2605; | &#x2605; |
+|  1  | :star: | :star: |
 |  2  |  |  |
 |  3  |  |  |
 |  4  |  |  |
