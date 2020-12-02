@@ -6,4 +6,8 @@
     <RootNamespace>Day1_Task2</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\AdventOfCode2020-InputDataReader\AdventOfCode2020.csproj" />
+  </ItemGroup>
+
 </Project>

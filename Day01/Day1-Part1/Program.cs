@@ -1,9 +1,10 @@
-﻿using System;
+﻿using AdventOfCode2020;
+using System;
 using System.Collections.Generic;
 
 AppDataInput inputFile = new AppDataInput();
 List<string> dataList = new List<string>();
-dataList = inputFile.ReadData();
+dataList = inputFile.ReadData("Day01-input.txt"); //Read data from: "../../AdventOfCode2020/Data/{dataInputFile}"
 bool isNotFound = true;
 
 foreach (var item in dataList)
