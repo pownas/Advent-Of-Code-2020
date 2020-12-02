@@ -59,13 +59,16 @@ bool validatePasswordPolicy(int first, int second, char character, string passwo
     }
 
 
-    if (checkFirst is true && checkSecond is true || checkFirst is false && checkSecond is false)
+    if (checkFirst || checkSecond)
     {
-        returnValue = false;
+        if (checkFirst && checkSecond)
+            returnValue = false;
+        else
+            returnValue = true;
     }
     else
     {
-        returnValue = true;
+        returnValue = false;
     }
 
     return returnValue;
