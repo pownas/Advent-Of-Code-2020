@@ -3,6 +3,9 @@ My repo for the Advent of Code 2020-challange.
 
 I will try solve this years challanges with Microsofts new .NET5 (released november 2020 via https://dot.net/ ) and C# language version 9.
 
+## Kodsnack repos
+Check other examples of the solutions in: https://github.com/kodsnack/advent_of_code_2020
+
 ## Progress
 
 | Day | Part 1 | Part 2 |
