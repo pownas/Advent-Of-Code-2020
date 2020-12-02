@@ -12,13 +12,17 @@ foreach (var line in dataList)
     string[] splittedLine = line.Split(" ");
     string[] subSplitt = splittedLine[0].Split("-");
 
-    string minChar = subSplitt[0];
-    string maxChar = subSplitt[1];
+    string firstNum = subSplitt[0];
+    string secondNum = subSplitt[1];
     string searchCharacter = splittedLine[1].Replace(":", "");
     string strPassword = splittedLine[2];
 
+    //string firstNum = "8";
+    //string secondNum = "11";
+    //string searchCharacter = "z";
+    //string strPassword = "zzzzzzzpzzlzzzzszzzz";
 
-    if (validatePasswordPolicy(int.Parse(minChar), int.Parse(maxChar), char.Parse(searchCharacter), strPassword))
+    if (validatePasswordPolicy(int.Parse(firstNum), int.Parse(secondNum), char.Parse(searchCharacter), strPassword))
     {
         Console.Write("true - ");
         numberOfValidPass++;
@@ -28,34 +32,40 @@ foreach (var line in dataList)
         Console.Write("false - ");
     }
 
-    Console.WriteLine("Min: " + minChar + ", Max: " + maxChar + ", Char: " + searchCharacter + ", Password: " + strPassword);
+    Console.WriteLine("First position: " + firstNum + ", Second position: " + secondNum + ", Char: " + searchCharacter + ", Password: " + strPassword);
 
 }
 
-Console.WriteLine("Number of valid passwords: " + numberOfValidPass);
+Console.WriteLine("\nNumber of valid passwords: " + numberOfValidPass);
 
 
-bool validatePasswordPolicy(int min, int max, char character, string password)
+bool validatePasswordPolicy(int first, int second, char character, string password)
 {
     char[] charPassword = password.ToCharArray();
+    bool checkFirst = false;
+    bool checkSecond = false;
     bool returnValue;
-    int numberOfChar = 0;
 
     for (int i = 0; i < charPassword.Length; i++)
     {
-        if (charPassword[i] == character)
+        if (charPassword[i] == character && first-1 == i)
         {
-            numberOfChar++;
+            checkFirst = true;
+        }
+        if (charPassword[i] == character && second - 1 == i)
+        {
+            checkFirst = true;
         }
     }
 
-    if (numberOfChar >= min && numberOfChar <= max)
+
+    if (checkFirst is true && checkSecond is true || checkFirst is false && checkSecond is false)
     {
-        returnValue = true;
+        returnValue = false;
     }
     else
     {
-        returnValue = false;
+        returnValue = true;
     }
 
     return returnValue;
