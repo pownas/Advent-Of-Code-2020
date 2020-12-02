@@ -17,11 +17,6 @@ foreach (var line in dataList)
     string searchCharacter = splittedLine[1].Replace(":", "");
     string strPassword = splittedLine[2];
 
-    //string firstNum = "8";
-    //string secondNum = "11";
-    //string searchCharacter = "z";
-    //string strPassword = "zzzzzzzpzzlzzzzszzzz";
-
     if (validatePasswordPolicy(int.Parse(firstNum), int.Parse(secondNum), char.Parse(searchCharacter), strPassword))
     {
         Console.Write("true - ");
@@ -54,7 +49,7 @@ bool validatePasswordPolicy(int first, int second, char character, string passwo
         }
         if (charPassword[i] == character && second - 1 == i)
         {
-            checkFirst = true;
+            checkSecond = true;
         }
     }
 
