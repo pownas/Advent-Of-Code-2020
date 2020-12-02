@@ -7,23 +7,15 @@ List<string> dataList = inputFile.ReadData("Day02-input.txt"); //Read data from:
 
 int numberOfValidPass = 0;
 
-string[] splittedLine;
-string[] subSplitt;
-
-string minChar;
-string maxChar;
-string searchCharacter;
-string strPassword;
-
 foreach (var line in dataList)
 {
-    splittedLine = line.Split(" ");
-    subSplitt = splittedLine[0].Split("-");
+    string[] splittedLine = line.Split(" ");
+    string[] subSplitt = splittedLine[0].Split("-");
 
-    minChar = subSplitt[0];
-    maxChar = subSplitt[1];
-    searchCharacter = splittedLine[1].Replace(":", "");
-    strPassword = splittedLine[2];
+    string minChar = subSplitt[0];
+    string maxChar = subSplitt[1];
+    string searchCharacter = splittedLine[1].Replace(":", "");
+    string strPassword = splittedLine[2];
 
 
     if (validatePasswordPolicy(int.Parse(minChar), int.Parse(maxChar), char.Parse(searchCharacter), strPassword))
