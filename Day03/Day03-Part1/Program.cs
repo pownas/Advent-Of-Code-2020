@@ -12,8 +12,7 @@ int x = 0;
 for (int y = 0; y < dataList.Count; y++)
 {
     char[] rowCharArr = dataList[y].ToCharArray();
-    int rowCountChar = dataList[y].Count();
-    int charPos = x % rowCountChar;
+    int charPos = x % rowCharArr.Length;
 
     //Format on List<string> dataList == dataList[rowNumber][charPosition] 
     //This will result in examples: 
