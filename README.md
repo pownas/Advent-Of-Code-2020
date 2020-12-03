@@ -12,7 +12,7 @@ Check other examples of the solutions in: https://github.com/kodsnack/advent_of_
 | --- | --- | --- |
 |  1  | :star: | :star: |
 |  2  | :star: | :star: |
-|  3  |  |  |
+|  3  | :star: | :star: |
 |  4  |  |  |
 |  5  |  |  |
 |  6  |  |  |
