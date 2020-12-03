@@ -31,12 +31,12 @@ foreach (var map in RightDownList)
 
             if (dataList[y][charPos] is '#') // Checks if dataList[row][charPos] is #
             {
-                rowCharArr[charPos] = 'X'; //Will mark tree as X, in output
+                rowCharArr[charPos] = 'X'; //Will mark tree (#) as "X", in output
                 numberOfTrees++;
             }
             else
             {
-                rowCharArr[charPos] = 'O'; //Will open path as O, in output
+                rowCharArr[charPos] = 'O'; //Will mark open path (.) as "O", in output
             }
             x += map.Right;
 
