@@ -1,12 +1,4 @@
 ﻿using System;
+using static System.Console;
 
-namespace AdventOfCode2020
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
-}
+WriteLine("Hello World!");
