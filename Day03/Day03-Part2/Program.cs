@@ -15,7 +15,6 @@ RightDownList.Add(new StepsRightDown(5, 1));
 RightDownList.Add(new StepsRightDown(7, 1));
 RightDownList.Add(new StepsRightDown(1, 2));
 
-
 foreach (var map in RightDownList)
 {
     int numberOfTrees = 0;
@@ -54,7 +53,7 @@ foreach (var map in RightDownList)
     Console.WriteLine("\nAll number before * Number of trees = " + multiplyAllTrees);
 }
 
-Console.WriteLine("\nAnswer: " + multiplyAllTrees);
+Console.WriteLine("\nANSWER - All number of trees multiplied: " + multiplyAllTrees);
 
 
 public record StepsRightDown(int Right, int Down); //Creates the Object record: RightDown

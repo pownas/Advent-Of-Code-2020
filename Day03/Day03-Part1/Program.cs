@@ -34,4 +34,4 @@ for (int y = 0; y < dataList.Count; y++)
     Console.WriteLine(newOutputString);
 }
 
-Console.WriteLine("\nNumber of trees: " + numberOfTrees);
+Console.WriteLine("\nANSWER - Number of trees: " + numberOfTrees);
