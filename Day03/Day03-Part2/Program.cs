@@ -8,14 +8,14 @@ List<string> dataList = inputFile.ReadData("Day03-input.txt"); //Read data from:
 long multiplyAllTrees = 1;
 
 //Record for StepsRightDown is created in bottom of this file
-List<StepsRightDown> RightDownList = new List<StepsRightDown>();
-RightDownList.Add(new StepsRightDown(1, 1));
-RightDownList.Add(new StepsRightDown(3, 1));
-RightDownList.Add(new StepsRightDown(5, 1));
-RightDownList.Add(new StepsRightDown(7, 1));
-RightDownList.Add(new StepsRightDown(1, 2));
+List<StepsRightDown> MapList = new List<StepsRightDown>();
+MapList.Add(new StepsRightDown(1, 1));
+MapList.Add(new StepsRightDown(3, 1));
+MapList.Add(new StepsRightDown(5, 1));
+MapList.Add(new StepsRightDown(7, 1));
+MapList.Add(new StepsRightDown(1, 2));
 
-foreach (var map in RightDownList)
+foreach (var map in MapList)
 {
     int numberOfTrees = 0;
     int x = 0;
