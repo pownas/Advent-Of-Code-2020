@@ -40,6 +40,7 @@ foreach (var passport in passportList)
 Console.WriteLine("\n\nTotal number of passports: " + passportList.Count);
 Console.WriteLine("\nANSWER - Number of valid passwords: " + validNumberOfPassports);
 
+/// <summary> Function that checks if all the data on the passport are valid. </summary>
 bool IsPassportValueValid(Dictionary<string, string> passport)
 {
     var eyeColors = new[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
@@ -53,6 +54,7 @@ bool IsPassportValueValid(Dictionary<string, string> passport)
            && IsHeightValid(passport["hgt"]);
 }
 
+/// <summary> Function that checks if a height in a String format, is in the format of ex: 155cm/72in , and returns a true/false if the hardcoded min/max are fulfilled. </summary>
 bool IsHeightValid(string height)
 {
     if (height.Contains("cm"))
@@ -62,6 +64,7 @@ bool IsHeightValid(string height)
     return false;
 }
 
+/// <summary> Function that checks if a number in a String format, is between a min and max value and returns a true/false value. </summary>
 bool IsIntBetween(string str, int min, int max)
 {
     return int.TryParse(str, out var val) && val >= min && val <= max;
