@@ -6,21 +6,13 @@ using System.Linq;
 AppDataInput inputFile = new AppDataInput();
 List<string> dataList = inputFile.ReadData("Day03-input.txt"); //Read data from: "../../AdventOfCode2020/Data/{dataInputFile}"
 
-Passport pass = new Passport(860033327, 147, 1937, 2017, 2020, 183);
+//Examples:
+Passport pass1 = new Passport(860033327, 147, 1937, 2017, 2020, 183, "CM", "#fffffd", "gry");
+Passport pass2 = new Passport(028048884, 350, 1929, 2013, 2023, 0, "NONE", "#cfa07d", "amb");
+Passport pass3 = new Passport(760753108, 147, 1931, 2013, 2024, 179, "CM", "#ae17e1", "brn");
+Passport pass4 = new Passport(166559648, 0, 1937, 2011, 2025, 59, "IN", "#cfa07d", "brn");
 
-ecl: gry pid: eyr:  hcl:#fffffd
-byr:  iyr:  cid: 147 hgt: cm
 
-    iyr:2013 ecl: amb cid:350 eyr: 2023 pid: 028048884
-hcl:#cfa07d byr:1929
-
-hcl:#ae17e1 iyr:2013
-eyr: 2024
-ecl: brn pid:760753108 byr: 1931
-hgt: 179cm
-
- hcl:#cfa07d eyr:2025 pid:166559648
-iyr: 2011 ecl: brn hgt:59in
 
 
 /// <summary>
@@ -33,4 +25,4 @@ iyr: 2011 ecl: brn hgt:59in
 ///     hcl(Hair Color), 
 ///     ecl(Eye Color)
 /// </summary>
-public record Passport(int pid, int cid, int byr, int iyr, int eyr, int hgt, string hcl, string ecl);
+public record Passport(int pid, int cid, int byr, int iyr, int eyr, int hgt, string hgtINCM, string hcl, string ecl);
