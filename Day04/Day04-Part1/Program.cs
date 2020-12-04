@@ -70,7 +70,7 @@ void ReadPassportBatch()
                                 {
                                     string[] splitting = item.Split(":");
 
-                                    if(variable.Equals("pid"))
+                                    if (variable.Equals("pid"))
                                     {
                                         int number;
                                         bool success = Int32.TryParse(splitting[1], out number);
@@ -79,50 +79,53 @@ void ReadPassportBatch()
                                             pid = number;
                                         }
                                     }
-                                    if (variable.Equals("cid"))
+                                    else if (variable.Equals("cid"))
                                         cid = int.Parse(splitting[1]);
-                                    if (variable.Equals("byr"))
+                                    else if (variable.Equals("byr"))
                                         byr = int.Parse(splitting[1]);
-                                    if (variable.Equals("iyr"))
+                                    else if (variable.Equals("iyr"))
                                         iyr = int.Parse(splitting[1]);
-                                    if (variable.Equals("eyr"))
+                                    else if (variable.Equals("eyr"))
                                         eyr = int.Parse(splitting[1]);
-                                    if (variable.Equals("hgt"))
+                                    else if (variable.Equals("hgt"))
                                     {
                                         //have to splitt value
                                         string[] hgtSplitt = splitting[1].Split("i");
                                         hgtSplitt = hgtSplitt[0].Split("c");
 
                                         hgt = int.Parse(hgtSplitt[0]);
-                                    }
-                                    if (variable.Equals("hgt"))
-                                        if(hgtINCM is "NONE") 
+
+                                        if (hgtINCM is "NONE")
                                         {
                                             if (splitting[1].Contains("in"))
                                                 hgtINCM = "IN";
                                             else if (splitting[1].Contains("cm"))
                                                 hgtINCM = "CM";
+                                            else
+                                                hgtINCM = "BLANK";
                                         }
-                                    if (variable.Equals("hcl"))
+                                    }
+                                    else if (variable.Equals("hcl"))
                                         hcl = splitting[1];
-                                    if (variable.Equals("ecl"))
+                                    else if (variable.Equals("ecl"))
                                         ecl = splitting[1];
                                 }
                             }
                         }
                     }
                 }
-                //  && hgtINCM is not "NONE"
+                //  
                 //optional: && cid is not 0
-                if (pid is not 0 && byr is not 0 && iyr is not 0 && eyr is not 0 && hgt is not 0 && hcl is not "NONE" && ecl is not "NONE")
+                if (pid is not 0 && byr is not 0 && iyr is not 0 && eyr is not 0 && hgt is not 0 && hgtINCM is not "NONE" && hcl is not "NONE" && ecl is not "NONE")
                 {
                     Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
 
                     if (passportList.Exists(x => x.pid == passport.pid) is false)
                     {
                         passportList.Add(passport);
+                        i = passRow; //jumps to the row where I'm at now
                     }
-                    passRow += 10;
+                    passRow += 10; //add some rows to inner loop to quit this loop.
                 }
             }
         }
