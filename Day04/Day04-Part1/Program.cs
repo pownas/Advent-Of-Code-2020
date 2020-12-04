@@ -33,4 +33,4 @@ iyr: 2011 ecl: brn hgt:59in
 ///     hcl(Hair Color), 
 ///     ecl(Eye Color)
 /// </summary>
-public record Passport(int PassID, int CountryID, int BirthYear, int IssuedYear, int ExpYear, int Height, string HairColor, string EyeColor);
+public record Passport(int pid, int cid, int byr, int iyr, int eyr, int hgt, string hcl, string ecl);
