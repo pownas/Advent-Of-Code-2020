@@ -6,7 +6,8 @@ using System.Linq;
 AppDataInput inputFile = new AppDataInput();
 List<string> dataList = inputFile.ReadData("Day04-input.txt"); //Read data from: "../../AdventOfCode2020/Data/{dataInputFile}"
 List <Passport> passportList = new List<Passport>();
-int totalNumberOfPassports = 0; 
+int totalNumberOfPassports = 0;
+int validNumberOfPassports = 0;
 
 ////Examples:
 //Passport pass1 = new Passport(860033327, 147, 1937, 2017, 2020, 183, "CM", "#fffffd", "gry");
@@ -25,10 +26,11 @@ ReadPassportBatch();
 foreach (var passport in passportList)
 {
     Console.WriteLine("pid:" + passport.pid + ", cid:" + passport.cid + ", byr:" + passport.byr + ", iyr:" + passport.iyr + ", eyr:" + passport.eyr + ", hgt:" + passport.hgt + ", hgtINCM:" + passport.hgtINCM + ", hcl:" + passport.hcl + ", ecl:" + passport.ecl);
-    totalNumberOfPassports++;
+    validNumberOfPassports++;
 }
 
 Console.WriteLine("\nTotal number of passports: " + totalNumberOfPassports);
+Console.WriteLine("\nANSWER - Valid passports: " + validNumberOfPassports);
 
 
 
@@ -39,6 +41,8 @@ void ReadPassportBatch()
     {
         if (dataList[i] is not "" || dataList[i] is not null)
         {
+            totalNumberOfPassports++;
+
             string[] variables = new string[] { "pid", "cid", "byr", "iyr", "eyr", "hgt", "hgtINCM", "hcl", "ecl" };
             int pid = 0;
             int cid = 0;
