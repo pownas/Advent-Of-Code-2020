@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 AppDataInput inputFile = new AppDataInput();
-List<string> dataList = inputFile.ReadData("Day03-input.txt"); //Read data from: "../../AdventOfCode2020/Data/{dataInputFile}"
+List<string> dataList = inputFile.ReadData("Day04-input.txt"); //Read data from: "../../AdventOfCode2020/Data/{dataInputFile}"
 List <Passport> passportList = new List<Passport>();
 int totalNumberOfPassports = 0; 
 
@@ -66,7 +66,14 @@ void ReadPassportBatch()
                                     string[] splitting = item.Split(":");
 
                                     if(variable.Equals("pid"))
-                                        pid = int.Parse(splitting[1]);
+                                    {
+                                        int number;
+                                        bool success = Int32.TryParse(splitting[1], out number);
+                                        if (success)
+                                        {
+                                            pid = number;
+                                        }
+                                    }
                                     else if (variable.Equals("cid"))
                                         cid = int.Parse(splitting[1]);
                                     else if (variable.Equals("byr"))
@@ -93,8 +100,12 @@ void ReadPassportBatch()
                     }
                 }
 
-                Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
-                passportList.Add(passport);
+                if (pid is not 0 && cid is not 0 && byr is not 0)
+                {
+                    Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
+                    passportList.Add(passport);
+                    passRow += 10;
+                }
             }
         }
     }
