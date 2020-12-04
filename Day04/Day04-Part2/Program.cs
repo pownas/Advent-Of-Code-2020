@@ -6,14 +6,13 @@ using System.Text.RegularExpressions;
 
 AppDataInput inputFile = new AppDataInput();
 List<Dictionary<string, string>> passportList = inputFile.ReadKeyValue(@"Day04-input.txt", " ", ":");
-
 int validNumberOfPassports = 0;
 
 foreach (var passport in passportList)
 {
     int validated = 0;
-
-    validated += passport.ContainsKey("pid") ? 1 : 0;
+    
+    validated += passport.ContainsKey("pid") ? 1 : 0; //Checking if passport.ContainsKey("keyName") , if true = 1 , else 0
     validated += passport.ContainsKey("byr") ? 1 : 0;
     validated += passport.ContainsKey("iyr") ? 1 : 0;
     validated += passport.ContainsKey("eyr") ? 1 : 0;
@@ -21,27 +20,12 @@ foreach (var passport in passportList)
     validated += passport.ContainsKey("hcl") ? 1 : 0;
     validated += passport.ContainsKey("ecl") ? 1 : 0;
 
-    if (validated >= 7)
+    if (validated >= 7) //If all 7 are true, do another check with function IsPartTwoValid, and pass in a passport that passed validation in part1
     {
-        if (passport.ContainsKey("pid"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("byr"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("iyr"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("eyr"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("hgt"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("hcl"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-        if (passport.ContainsKey("ecl"))
-            validated += IsPartTwoValid(passport) ? 1 : 0;
-
-        if (validated >= 14)
+        if (IsPassportValueValid(passport)) //If all requred fields are OK, then check if the Data (Value) is valid on the passport
         {
-            validNumberOfPassports++;
-            Console.Write("\n valid - ");
+            validNumberOfPassports++; //add +1 to answer (valid passport)
+            Console.Write("\n valid - "); //print valid
         }
         else
             Console.Write("\n invalid - ");
@@ -49,25 +33,24 @@ foreach (var passport in passportList)
     else
         Console.Write("\n invalid - ");
 
+
     foreach (var keyValue in passport)
         Console.Write(keyValue.Key + ":" + keyValue.Value + "    ");
-
 }
 Console.WriteLine("\n\nTotal number of passports: " + passportList.Count);
 Console.WriteLine("\nANSWER - Number of valid passwords: " + validNumberOfPassports);
 
-
-bool IsPartTwoValid(Dictionary<string, string> dictionary)
+bool IsPassportValueValid(Dictionary<string, string> passport)
 {
     var eyeColors = new[] { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
-    return IsIntBetween(dictionary["byr"], 1920, 2002)
-           && IsIntBetween(dictionary["iyr"], 2010, 2020)
-           && IsIntBetween(dictionary["eyr"], 2020, 2030)
-           && Regex.IsMatch(dictionary["hcl"], "^#[a-f0-9]{6}$")
-           && Regex.IsMatch(dictionary["pid"], "^[0-9]{9}$")
-           && eyeColors.Contains(dictionary["ecl"])
-           && IsHeightValid(dictionary["hgt"]);
+    return IsIntBetween(passport["byr"], 1920, 2002)
+           && IsIntBetween(passport["iyr"], 2010, 2020)
+           && IsIntBetween(passport["eyr"], 2020, 2030)
+           && Regex.IsMatch(passport["hcl"], "^#[a-f0-9]{6}$")
+           && Regex.IsMatch(passport["pid"], "^[0-9]{9}$")
+           && eyeColors.Contains(passport["ecl"])
+           && IsHeightValid(passport["hgt"]);
 }
 
 bool IsHeightValid(string height)
