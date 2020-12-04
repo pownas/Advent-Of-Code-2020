@@ -52,7 +52,13 @@ void ReadPassportBatch()
                 string hcl = "NONE";
                 string ecl = "NONE";
 
-                if (dataList[passRow] is not "" || dataList[passRow] is not null)
+                if (passRow == (dataList.Count - 1))
+                {
+                    passRow += 15;
+                    break;
+                }
+
+                if (dataList[passRow] is not "" && dataList[passRow] is not null)
                 {
                     foreach (var variable in variables)
                     {
@@ -74,13 +80,13 @@ void ReadPassportBatch()
                                             pid = number;
                                         }
                                     }
-                                    else if (variable.Equals("cid"))
+                                    if (variable.Equals("cid"))
                                         cid = int.Parse(splitting[1]);
-                                    else if (variable.Equals("byr"))
+                                    if (variable.Equals("byr"))
                                         byr = int.Parse(splitting[1]);
-                                    else if (variable.Equals("iyr"))
+                                    if (variable.Equals("iyr"))
                                         iyr = int.Parse(splitting[1]);
-                                    else if (variable.Equals("eyr"))
+                                    if (variable.Equals("eyr"))
                                         eyr = int.Parse(splitting[1]);
                                     //else if (variable.Equals("hgt"))
                                     //{
@@ -90,9 +96,9 @@ void ReadPassportBatch()
                                     //Can't be checked
                                     //else if (variable.Equals("hgtINCM"))
                                     //    hgtINCM = int.Parse(splitting[1]);
-                                    else if (variable.Equals("hcl"))
+                                    if (variable.Equals("hcl"))
                                         hcl = splitting[1];
-                                    else if (variable.Equals("ecl"))
+                                    if (variable.Equals("ecl"))
                                         ecl = splitting[1];
                                 }
                             }
