@@ -118,8 +118,7 @@ void ReadPassportBatch()
                 {
                     Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
 
-                    //if (passportList.Exists(x => x.pid == passport.pid)) is false)
-                    if (passportList.Contains(passport) is false)
+                    if (passportList.Exists(x => x.pid == passport.pid) is false)
                     {
                         passportList.Add(passport);
                     }
