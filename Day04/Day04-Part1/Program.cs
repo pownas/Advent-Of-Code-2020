@@ -24,7 +24,7 @@ ReadPassportBatch();
 
 foreach (var passport in passportList)
 {
-    Console.WriteLine(passport.pid);
+    Console.WriteLine("pid:" + passport.pid + ", cid:" + passport.cid + ", byr:" + passport.byr + ", iyr:" + passport.iyr + ", eyr:" + passport.eyr + ", hgt:" + passport.hgt + ", hgtINCM:" + passport.hgtINCM + ", hcl:" + passport.hcl + ", ecl:" + passport.ecl);
     totalNumberOfPassports++;
 }
 
@@ -39,19 +39,18 @@ void ReadPassportBatch()
     {
         if (dataList[i] is not "" || dataList[i] is not null)
         {
+            string[] variables = new string[] { "pid", "cid", "byr", "iyr", "eyr", "hgt", "hgtINCM", "hcl", "ecl" };
+            int pid = 0;
+            int cid = 0;
+            int byr = 0;
+            int iyr = 0;
+            int eyr = 0;
+            int hgt = 0;
+            string hgtINCM = "NONE";
+            string hcl = "NONE";
+            string ecl = "NONE";
             for (int passRow = i; passRow < (i+10); passRow++)
             {
-                string[] variables = new string[] { "pid", "cid", "byr", "iyr", "eyr", "hgt", "hgtINCM", "hcl", "ecl" };
-                int pid = 0;
-                int cid = 0;
-                int byr = 0;
-                int iyr = 0;
-                int eyr = 0;
-                int hgt = 0;
-                string hgtINCM = "NONE";
-                string hcl = "NONE";
-                string ecl = "NONE";
-
                 if (passRow == (dataList.Count - 1))
                 {
                     passRow += 15;
@@ -105,11 +104,17 @@ void ReadPassportBatch()
                         }
                     }
                 }
-
-                if (pid is not 0 && cid is not 0 && byr is not 0)
+                // && hgt is not 0 && hgtINCM is not "NONE"
+                //optional: && cid is not 0
+                if (pid is not 0 && byr is not 0 && iyr is not 0 && eyr is not 0 && hcl is not "NONE" && ecl is not "NONE")
                 {
                     Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
-                    passportList.Add(passport);
+
+                    //if (passportList.Exists(x => x.pid == passport.pid)) is false)
+                    if (passportList.Contains(passport) is false)
+                    {
+                        passportList.Add(passport);
+                    }
                     passRow += 10;
                 }
             }
