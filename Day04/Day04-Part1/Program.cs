@@ -8,16 +8,16 @@ List<string> dataList = inputFile.ReadData("Day04-input.txt"); //Read data from:
 List <Passport> passportList = new List<Passport>();
 int totalNumberOfPassports = 0; 
 
-//Examples:
-Passport pass1 = new Passport(860033327, 147, 1937, 2017, 2020, 183, "CM", "#fffffd", "gry");
-Passport pass2 = new Passport(028048884, 350, 1929, 2013, 2023, 0, "NONE", "#cfa07d", "amb");
-Passport pass3 = new Passport(760753108, 147, 1931, 2013, 2024, 179, "CM", "#ae17e1", "brn");
-Passport pass4 = new Passport(166559648, 0, 1937, 2011, 2025, 59, "IN", "#cfa07d", "brn");
+////Examples:
+//Passport pass1 = new Passport(860033327, 147, 1937, 2017, 2020, 183, "CM", "#fffffd", "gry");
+//Passport pass2 = new Passport(028048884, 350, 1929, 2013, 2023, 0, "NONE", "#cfa07d", "amb");
+//Passport pass3 = new Passport(760753108, 147, 1931, 2013, 2024, 179, "CM", "#ae17e1", "brn");
+//Passport pass4 = new Passport(166559648, 0, 1937, 2011, 2025, 59, "IN", "#cfa07d", "brn");
 
-passportList.Add(pass1);
-passportList.Add(pass2);
-passportList.Add(pass3);
-passportList.Add(pass4);
+//passportList.Add(pass1);
+//passportList.Add(pass2);
+//passportList.Add(pass3);
+//passportList.Add(pass4);
 
 ReadPassportBatch();
 
@@ -49,7 +49,7 @@ void ReadPassportBatch()
             string hgtINCM = "NONE";
             string hcl = "NONE";
             string ecl = "NONE";
-            for (int passRow = i; passRow < (i+10); passRow++)
+            for (int passRow = i; passRow < (i+5); passRow++)
             {
                 if (passRow == (dataList.Count - 1))
                 {
@@ -87,14 +87,22 @@ void ReadPassportBatch()
                                         iyr = int.Parse(splitting[1]);
                                     if (variable.Equals("eyr"))
                                         eyr = int.Parse(splitting[1]);
-                                    //else if (variable.Equals("hgt"))
-                                    //{
-                                    //    //have to splitt value
-                                    //    hgt = int.Parse(splitting[1]);
-                                    //}
-                                    //Can't be checked
-                                    //else if (variable.Equals("hgtINCM"))
-                                    //    hgtINCM = int.Parse(splitting[1]);
+                                    if (variable.Equals("hgt"))
+                                    {
+                                        //have to splitt value
+                                        string[] hgtSplitt = splitting[1].Split("i");
+                                        hgtSplitt = hgtSplitt[0].Split("c");
+
+                                        hgt = int.Parse(hgtSplitt[0]);
+                                    }
+                                    if (variable.Equals("hgt"))
+                                        if(hgtINCM is "NONE") 
+                                        {
+                                            if (splitting[1].Contains("in"))
+                                                hgtINCM = "IN";
+                                            else if (splitting[1].Contains("cm"))
+                                                hgtINCM = "CM";
+                                        }
                                     if (variable.Equals("hcl"))
                                         hcl = splitting[1];
                                     if (variable.Equals("ecl"))
@@ -104,9 +112,9 @@ void ReadPassportBatch()
                         }
                     }
                 }
-                // && hgt is not 0 && hgtINCM is not "NONE"
+                //  && hgtINCM is not "NONE"
                 //optional: && cid is not 0
-                if (pid is not 0 && byr is not 0 && iyr is not 0 && eyr is not 0 && hcl is not "NONE" && ecl is not "NONE")
+                if (pid is not 0 && byr is not 0 && iyr is not 0 && eyr is not 0 && hgt is not 0 && hcl is not "NONE" && ecl is not "NONE")
                 {
                     Passport passport = new Passport(pid, cid, byr, iyr, eyr, hgt, hgtINCM, hcl, ecl);
 
