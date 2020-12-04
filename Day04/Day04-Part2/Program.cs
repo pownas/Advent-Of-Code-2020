@@ -53,6 +53,7 @@ foreach (var passport in passportList)
         Console.Write(keyValue.Key + ":" + keyValue.Value + "    ");
 
 }
+Console.WriteLine("\n\nTotal number of passports: " + passportList.Count);
 Console.WriteLine("\nANSWER - Number of valid passwords: " + validNumberOfPassports);
 
 
@@ -68,7 +69,6 @@ bool IsPartTwoValid(Dictionary<string, string> dictionary)
            && eyeColors.Contains(dictionary["ecl"])
            && IsHeightValid(dictionary["hgt"]);
 }
-Console.WriteLine("\n\nTotal number of passports: " + passportList.Count);
 
 bool IsHeightValid(string height)
 {
