@@ -15,8 +15,8 @@ foreach (string boardingpass in dataList)
 	int minColumn = 0;
 	int maxColumn = 7;
 
-    foreach (char c in boardingpass)
-    {
+	foreach (char c in boardingpass)
+	{
 		if (c is 'F')
 			maxRow = maxRow - ((maxRow - minRow) / 2) - 1;
 		else if (c is 'B')
@@ -30,7 +30,18 @@ foreach (string boardingpass in dataList)
 	int seatID = minRow * 8 + minColumn;
 	seatList.Add(seatID);
 
-    Console.WriteLine(boardingpass + ": row " + minRow + ", column " + minColumn + ", seatID " + seatID);
+	Console.WriteLine(boardingpass + ": row " + minRow + ", column " + minColumn + ", seatID " + seatID);
 }
 
-Console.WriteLine("\n\n" + seatList.Max() );
+Console.WriteLine("\n\n" + seatList.Max());
+
+seatList.Sort();
+
+foreach (var seat in seatList)
+{
+    for (int i = 0; i < seatList.Max(); i++)
+    {
+        if (seatList[i] != seat)
+            Console.WriteLine("Free seats: " + seat);
+    }
+}
